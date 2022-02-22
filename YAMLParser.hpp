@@ -13,6 +13,9 @@ class YAMLParser {
 public:
     // YAML parsing is at a key
     bool isKey(std::string::const_iterator pc, bool invalue);
+
+    // Parse a YAML key
+    std::string::const_iterator parseKey(std::string::const_iterator pc, std::string::const_iterator end, std::string& name, bool& invalue);
 };
 
 #endif

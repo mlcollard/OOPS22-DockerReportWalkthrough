@@ -43,7 +43,7 @@ int main() {
 
             // parse key
             std::string name;
-            pc = parseKey(pc, buffer.cend(), name, invalue);
+            pc = parser.parseKey(pc, buffer.cend(), name, invalue);
 
             // update docker counters and version
             if (name == "version") {
