@@ -66,7 +66,7 @@ int main() {
 
             // parse value
             std::string value;
-            pc = parseValue(pc, buffer.cend(), value, invalue);
+            pc = parser.parseValue(pc, buffer.cend(), value, invalue);
 
             // save the version value
             if (inversion) {

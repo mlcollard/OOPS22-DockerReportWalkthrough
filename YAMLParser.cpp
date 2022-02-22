@@ -24,3 +24,9 @@ bool YAMLParser::isValue(std::string::const_iterator pc, bool invalue) {
 
     return ::isValue(pc, invalue);
 }
+
+// Parse a YAML value
+std::string::const_iterator YAMLParser::parseValue(std::string::const_iterator pc, std::string::const_iterator end, std::string& value, bool& invalue) {
+
+    return ::parseValue(pc, end, value, invalue);
+}

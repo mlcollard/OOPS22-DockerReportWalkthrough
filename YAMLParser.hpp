@@ -19,6 +19,9 @@ public:
 
     // YAML parsing is at a value
     bool isValue(std::string::const_iterator pc, bool invalue);
+
+    // Parse a YAML value
+    std::string::const_iterator parseValue(std::string::const_iterator pc, std::string::const_iterator end, std::string& value, bool& invalue);
 };
 
 #endif
