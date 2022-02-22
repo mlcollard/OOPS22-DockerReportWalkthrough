@@ -39,7 +39,7 @@ int main() {
     while (true) {
         if (pc == buffer.cend()) {
             break;
-        } else if (isKey(pc, invalue)) {
+        } else if (parser.isKey(pc, invalue)) {
 
             // parse key
             std::string name;

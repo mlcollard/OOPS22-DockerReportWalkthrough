@@ -7,8 +7,12 @@
 #ifndef INCLUDED_YAMLPARSER_HPP
 #define INCLUDED_YAMLPARSER_HPP
 
-class YAMLParser {
+#include <string>
 
+class YAMLParser {
+public:
+    // YAML parsing is at a key
+    bool isKey(std::string::const_iterator pc, bool invalue);
 };
 
 #endif
