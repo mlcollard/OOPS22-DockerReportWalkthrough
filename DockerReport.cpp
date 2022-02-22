@@ -15,6 +15,7 @@
 #include <sstream>
 
 #include "yaml_parser.hpp"
+#include "YAMLParser.hpp"
 
 int main() {
 
@@ -32,6 +33,7 @@ int main() {
     std::string buffer = sstream.str();
 
     // parse YAML and update counts
+    YAMLParser parser;
     bool invalue = false;
     std::string::const_iterator pc = buffer.cbegin();
     while (true) {
