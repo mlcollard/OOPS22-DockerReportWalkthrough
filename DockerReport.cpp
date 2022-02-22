@@ -14,7 +14,6 @@
 #include <string>
 #include <sstream>
 
-#include "yaml_parser.hpp"
 #include "YAMLParser.hpp"
 
 int main() {
