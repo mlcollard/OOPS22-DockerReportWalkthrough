@@ -62,7 +62,7 @@ int main() {
                 }
             }
 
-        } else if (isValue(pc, invalue)) {
+        } else if (parser.isValue(pc, invalue)) {
 
             // parse value
             std::string value;

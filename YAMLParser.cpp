@@ -18,3 +18,9 @@ std::string::const_iterator YAMLParser::parseKey(std::string::const_iterator pc,
 
     return ::parseKey(pc, end, name, invalue);
 }
+
+// YAML parsing is at a value
+bool YAMLParser::isValue(std::string::const_iterator pc, bool invalue) {
+
+    return ::isValue(pc, invalue);
+}
