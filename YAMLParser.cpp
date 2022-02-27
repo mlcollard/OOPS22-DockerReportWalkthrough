@@ -7,6 +7,11 @@
 #include "YAMLParser.hpp"
 #include "yaml_parser.hpp"
 
+// constructor
+YAMLParser::YAMLParser(const std::string& buffer)
+    : buffer(buffer)
+{}
+
 // YAML parsing is at a key
 bool YAMLParser::isKey(std::string::const_iterator pc) {
 

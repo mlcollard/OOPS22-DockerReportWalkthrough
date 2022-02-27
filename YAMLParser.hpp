@@ -11,6 +11,10 @@
 
 class YAMLParser {
 public:
+
+    // constructor
+    YAMLParser(const std::string& buffer);
+
     // YAML parsing is at a key
     bool isKey(std::string::const_iterator pc);
 
@@ -25,6 +29,7 @@ public:
 
 private:
     bool inValue = false;
+    std::string buffer;
 };
 
 #endif

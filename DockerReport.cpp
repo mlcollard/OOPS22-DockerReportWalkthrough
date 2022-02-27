@@ -32,7 +32,7 @@ int main() {
     std::string buffer = sstream.str();
 
     // parse YAML and update counts
-    YAMLParser parser;
+    YAMLParser parser(buffer);
     std::string::const_iterator pc = buffer.cbegin();
     while (true) {
         if (pc == buffer.cend()) {
