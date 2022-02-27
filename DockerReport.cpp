@@ -41,7 +41,7 @@ int main() {
 
             // parse key
             std::string name;
-            pc = parser.parseKey(pc, buffer.cend(), name);
+            pc = parser.parseKey(pc, name);
 
             // update docker counters and version
             if (name == "version") {
@@ -64,7 +64,7 @@ int main() {
 
             // parse value
             std::string value;
-            pc = parser.parseValue(pc, buffer.cend(), value);
+            pc = parser.parseValue(pc, value);
 
             // save the version value
             if (inversion) {

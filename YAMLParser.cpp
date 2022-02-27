@@ -9,7 +9,7 @@
 
 // constructor
 YAMLParser::YAMLParser(const std::string& buffer)
-    : buffer(buffer)
+    : buffer(buffer), end(buffer.cend())
 {}
 
 // YAML parsing is at a key
@@ -19,7 +19,7 @@ bool YAMLParser::isKey(std::string::const_iterator pc) {
 }
 
 // Parse a YAML key
-std::string::const_iterator YAMLParser::parseKey(std::string::const_iterator pc, std::string::const_iterator end, std::string& name) {
+std::string::const_iterator YAMLParser::parseKey(std::string::const_iterator pc, std::string& name) {
 
     return ::parseKey(pc, end, name, inValue);
 }
@@ -31,7 +31,7 @@ bool YAMLParser::isValue(std::string::const_iterator pc) {
 }
 
 // Parse a YAML value
-std::string::const_iterator YAMLParser::parseValue(std::string::const_iterator pc, std::string::const_iterator end, std::string& value) {
+std::string::const_iterator YAMLParser::parseValue(std::string::const_iterator pc, std::string& value) {
 
     return ::parseValue(pc, end, value, inValue);
 }
