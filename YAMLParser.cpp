@@ -8,25 +8,25 @@
 #include "yaml_parser.hpp"
 
 // YAML parsing is at a key
-bool YAMLParser::isKey(std::string::const_iterator pc, bool invalue) {
+bool YAMLParser::isKey(std::string::const_iterator pc) {
 
-    return ::isKey(pc, invalue);
+    return ::isKey(pc, inValue);
 }
 
 // Parse a YAML key
-std::string::const_iterator YAMLParser::parseKey(std::string::const_iterator pc, std::string::const_iterator end, std::string& name, bool& invalue) {
+std::string::const_iterator YAMLParser::parseKey(std::string::const_iterator pc, std::string::const_iterator end, std::string& name) {
 
-    return ::parseKey(pc, end, name, invalue);
+    return ::parseKey(pc, end, name, inValue);
 }
 
 // YAML parsing is at a value
-bool YAMLParser::isValue(std::string::const_iterator pc, bool invalue) {
+bool YAMLParser::isValue(std::string::const_iterator pc) {
 
-    return ::isValue(pc, invalue);
+    return ::isValue(pc, inValue);
 }
 
 // Parse a YAML value
-std::string::const_iterator YAMLParser::parseValue(std::string::const_iterator pc, std::string::const_iterator end, std::string& value, bool& invalue) {
+std::string::const_iterator YAMLParser::parseValue(std::string::const_iterator pc, std::string::const_iterator end, std::string& value) {
 
-    return ::parseValue(pc, end, value, invalue);
+    return ::parseValue(pc, end, value, inValue);
 }

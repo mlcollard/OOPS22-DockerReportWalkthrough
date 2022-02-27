@@ -33,16 +33,15 @@ int main() {
 
     // parse YAML and update counts
     YAMLParser parser;
-    bool invalue = false;
     std::string::const_iterator pc = buffer.cbegin();
     while (true) {
         if (pc == buffer.cend()) {
             break;
-        } else if (parser.isKey(pc, invalue)) {
+        } else if (parser.isKey(pc)) {
 
             // parse key
             std::string name;
-            pc = parser.parseKey(pc, buffer.cend(), name, invalue);
+            pc = parser.parseKey(pc, buffer.cend(), name);
 
             // update docker counters and version
             if (name == "version") {
@@ -61,11 +60,11 @@ int main() {
                 }
             }
 
-        } else if (parser.isValue(pc, invalue)) {
+        } else if (parser.isValue(pc)) {
 
             // parse value
             std::string value;
-            pc = parser.parseValue(pc, buffer.cend(), value, invalue);
+            pc = parser.parseValue(pc, buffer.cend(), value);
 
             // save the version value
             if (inversion) {
