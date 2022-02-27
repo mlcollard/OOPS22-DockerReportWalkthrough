@@ -30,6 +30,7 @@ public:
 private:
     bool inValue = false;
     std::string buffer;
+    std::string::const_iterator pc;
     std::string::const_iterator end;
 };
 

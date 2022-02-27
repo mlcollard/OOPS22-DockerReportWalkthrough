@@ -9,7 +9,7 @@
 
 // constructor
 YAMLParser::YAMLParser(const std::string& buffer)
-    : buffer(buffer), end(buffer.cend())
+    : buffer(buffer), pc(buffer.cbegin()), end(buffer.cend())
 {}
 
 // YAML parsing is at a key
