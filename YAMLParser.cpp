@@ -8,8 +8,8 @@
 #include "yaml_parser.hpp"
 
 // constructor
-YAMLParser::YAMLParser(const std::string& buffer)
-    : buffer(buffer), pc(buffer.cbegin()), end(buffer.cend())
+YAMLParser::YAMLParser(std::string_view inBuffer)
+    : buffer(inBuffer), pc(buffer.cbegin()), end(buffer.cend())
 {}
 
 // Done with parsing
