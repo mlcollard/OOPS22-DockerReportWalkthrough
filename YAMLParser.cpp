@@ -13,6 +13,25 @@ YAMLParser::YAMLParser(const std::string& buffer,
     : handleKey(handleKey), handleValue(handleValue), buffer(buffer), pc(buffer.cbegin()), end(buffer.cend())
 {}
 
+// parse the YAML using the registered handlers
+void YAMLParser::parse() {
+
+    while (true) {
+        if (isDone()) {
+            break;
+        } else if (isKey()) {
+
+            // parse key
+            parseKey();
+
+        } else if (isValue()) {
+
+            // parse value
+            parseValue();
+        }
+    }
+}
+
 // Done with parsing
 bool YAMLParser::isDone() {
     return pc == end;

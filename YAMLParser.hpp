@@ -19,6 +19,11 @@ public:
                std::function<void(std::string_view)> handleKey,
                std::function<void(std::string_view)> handleValue);
 
+    // parse the YAML using the registered handlers
+    void parse();
+
+private:
+
     // Done with parsing
     bool isDone();
 
@@ -34,7 +39,6 @@ public:
     // Parse a YAML value
     void parseValue();
 
-private:
     std::function<void(std::string_view)> handleKey;
     std::function<void(std::string_view)> handleValue;
     bool inValue = false;

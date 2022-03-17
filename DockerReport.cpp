@@ -61,20 +61,8 @@ int main() {
         }
     });
 
-    while (true) {
-        if (parser.isDone()) {
-            break;
-        } else if (parser.isKey()) {
-
-            // parse key
-            parser.parseKey();
-
-        } else if (parser.isValue()) {
-
-            // parse value
-            parser.parseValue();
-        }
-    }
+    // parse the YAML and collect docker compose data
+    parser.parse();
 
     // Output docker compose report
     std::cout << "# Docker Report: version " << version << '\n';
