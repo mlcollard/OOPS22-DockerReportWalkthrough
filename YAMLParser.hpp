@@ -15,9 +15,13 @@ class YAMLParser {
 public:
 
     // constructor
-    YAMLParser(const std::string& buffer,
-               std::function<void(std::string_view)> handleKey,
-               std::function<void(std::string_view)> handleValue);
+    YAMLParser(const std::string& buffer);
+
+    // register handler for a key
+    void registerKeyHandler(std::function<void(std::string_view)> handleKey);
+
+    // register handler for a value
+    void registerValueHandler(std::function<void(std::string_view)> handleValue);
 
     // parse the YAML using the registered handlers
     void parse();

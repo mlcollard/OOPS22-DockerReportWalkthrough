@@ -33,7 +33,8 @@ int main() {
     std::string buffer = sstream.str();
 
     // parse YAML and update counts
-    YAMLParser parser(buffer, [&](std::string_view name) {
+    YAMLParser parser(buffer);
+    parser.registerKeyHandler([&](std::string_view name) {
 
         // update docker counters and version
         if (name == "version") {
@@ -51,8 +52,8 @@ int main() {
                 ++opensuseCount;
             }
         }
-    },
-    [&inversion, &version](std::string_view value) {
+    });
+    parser.registerValueHandler([&inversion, &version](std::string_view value) {
 
         // save the version value
         if (inversion) {
