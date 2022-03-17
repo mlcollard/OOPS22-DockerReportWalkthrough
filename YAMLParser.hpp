@@ -7,13 +7,17 @@
 #ifndef INCLUDED_YAMLPARSER_HPP
 #define INCLUDED_YAMLPARSER_HPP
 
+#include <functional>
 #include <string>
+#include <string_view>
 
 class YAMLParser {
 public:
 
     // constructor
-    YAMLParser(const std::string& buffer);
+    YAMLParser(const std::string& buffer,
+               std::function<void(std::string_view)> handleKey,
+               std::function<void(std::string_view)> handleValue);
 
     // Done with parsing
     bool isDone();
@@ -31,6 +35,8 @@ public:
     void parseValue(std::string& value);
 
 private:
+    std::function<void(std::string_view)> handleKey;
+    std::function<void(std::string_view)> handleValue;
     bool inValue = false;
     std::string buffer;
     std::string::const_iterator pc;

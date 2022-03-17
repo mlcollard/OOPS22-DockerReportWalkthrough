@@ -7,8 +7,10 @@
 #include "YAMLParser.hpp"
 
 // constructor
-YAMLParser::YAMLParser(const std::string& buffer)
-    : buffer(buffer), pc(buffer.cbegin()), end(buffer.cend())
+YAMLParser::YAMLParser(const std::string& buffer,
+                       std::function<void(std::string_view)> handleKey,
+                       std::function<void(std::string_view)> handleValue)
+    : handleKey(handleKey), handleValue(handleValue), buffer(buffer), pc(buffer.cbegin()), end(buffer.cend())
 {}
 
 // Done with parsing
@@ -36,6 +38,8 @@ void YAMLParser::parseKey(std::string& name) {
     std::advance(pc, 1);
     pc = std::find_if_not(pc, end, [] (char c) { return isspace(c); });
     inValue = true;
+
+    handleKey(name);
 }
 
 // YAML parsing is at a value
@@ -57,4 +61,6 @@ void YAMLParser::parseValue(std::string& value) {
         std::advance(pc, 1);
     pc = std::find_if_not(pc, end, [] (char c) { return isspace(c); });
     inValue = false;
+
+    handleValue(value);
 }

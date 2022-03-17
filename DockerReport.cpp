@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <string>
+#include <string_view>
 #include <sstream>
 
 #include "YAMLParser.hpp"
@@ -32,7 +33,34 @@ int main() {
     std::string buffer = sstream.str();
 
     // parse YAML and update counts
-    YAMLParser parser(buffer);
+    YAMLParser parser(buffer, [&](std::string_view name) {
+
+        // update docker counters and version
+        if (name == "version") {
+            inversion = true;
+        } else {
+            ++keyCount;
+            auto prefixName = name.substr(0, name.find('_'));
+            if (prefixName == "ubuntu") {
+                ++ubuntuCount;
+            } else if (prefixName == "fedora") {
+                ++fedoraCount;
+            } else if (prefixName == "centos") {
+                ++centosCount;
+            } else if (prefixName == "opensuse") {
+                ++opensuseCount;
+            }
+        }
+    },
+    [&inversion, &version](std::string_view value) {
+
+        // save the version value
+        if (inversion) {
+            version = value;
+            inversion = false;
+        }
+    });
+
     while (true) {
         if (parser.isDone()) {
             break;
@@ -42,22 +70,22 @@ int main() {
             std::string name;
             parser.parseKey(name);
 
-            // update docker counters and version
-            if (name == "version") {
-                inversion = true;
-            } else {
-                ++keyCount;
-                std::string prefixName = name.substr(0, name.find('_'));
-                if (prefixName == "ubuntu") {
-                    ++ubuntuCount;
-                } else if (prefixName == "fedora") {
-                    ++fedoraCount;
-                } else if (prefixName == "centos") {
-                    ++centosCount;
-                } else if (prefixName == "opensuse") {
-                    ++opensuseCount;
-                }
-            }
+            // // update docker counters and version
+            // if (name == "version") {
+            //     inversion = true;
+            // } else {
+            //     ++keyCount;
+            //     std::string prefixName = name.substr(0, name.find('_'));
+            //     if (prefixName == "ubuntu") {
+            //         ++ubuntuCount;
+            //     } else if (prefixName == "fedora") {
+            //         ++fedoraCount;
+            //     } else if (prefixName == "centos") {
+            //         ++centosCount;
+            //     } else if (prefixName == "opensuse") {
+            //         ++opensuseCount;
+            //     }
+            // }
 
         } else if (parser.isValue()) {
 
@@ -65,11 +93,11 @@ int main() {
             std::string value;
             parser.parseValue(value);
 
-            // save the version value
-            if (inversion) {
-                version = value;
-                inversion = false;
-            }
+            // // save the version value
+            // if (inversion) {
+            //     version = value;
+            //     inversion = false;
+            // }
         }
     }
 
