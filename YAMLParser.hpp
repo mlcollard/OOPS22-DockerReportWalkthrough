@@ -8,13 +8,12 @@
 #define INCLUDED_YAMLPARSER_HPP
 
 #include <string>
-#include <string_view>
 
 class YAMLParser {
 public:
 
     // constructor
-    YAMLParser(std::string_view buffer);
+    YAMLParser(const std::string& buffer);
 
     // Done with parsing
     bool isDone();

@@ -17,7 +17,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Source files for the main program DockerReport
-set(SOURCE DockerReport.cpp YAMLParser.cpp yaml_parser.cpp)
+set(SOURCE DockerReport.cpp YAMLParser.cpp)
 
 # srcFact application
 add_executable(DockerReport ${SOURCE})
