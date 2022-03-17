@@ -26,13 +26,13 @@ public:
     bool isKey();
 
     // Parse a YAML key
-    void parseKey(std::string& name);
+    void parseKey();
 
     // YAML parsing is at a value
     bool isValue();
 
     // Parse a YAML value
-    void parseValue(std::string& value);
+    void parseValue();
 
 private:
     std::function<void(std::string_view)> handleKey;

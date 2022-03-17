@@ -25,12 +25,12 @@ bool YAMLParser::isKey() {
 }
 
 // Parse a YAML key
-void YAMLParser::parseKey(std::string& name) {
+void YAMLParser::parseKey() {
 
     auto endname = std::find_if_not(pc, end, [] (char c) { return isalnum(c) || c == '_' || c == '.'; });
     if (endname == end)
         exit(1);
-    name.assign(pc, endname);
+    std::string_view name(std::addressof(*pc), std::distance(pc, endname));
     pc = endname;
     pc = std::find_if_not(pc, end, [] (char c) { return isspace(c); });
     if (*pc != ':')
@@ -49,13 +49,13 @@ bool YAMLParser::isValue() {
 }
 
 // Parse a YAML value
-void YAMLParser::parseValue(std::string& value) {
+void YAMLParser::parseValue() {
 
     pc = std::find_if_not(pc, end, [] (char c) { return isspace(c); });
     if (*pc == '"')
         std::advance(pc, 1);
     auto valueend = std::find_if(pc, end, [] (char c) { return c == '"' || c == ' ' || c == '\n'; });
-    value.assign(pc, valueend);
+    std::string_view value(std::addressof(*pc), std::distance(pc, valueend));
     pc = valueend;
     if (*pc == '"')
         std::advance(pc, 1);

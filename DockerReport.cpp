@@ -67,37 +67,12 @@ int main() {
         } else if (parser.isKey()) {
 
             // parse key
-            std::string name;
-            parser.parseKey(name);
-
-            // // update docker counters and version
-            // if (name == "version") {
-            //     inversion = true;
-            // } else {
-            //     ++keyCount;
-            //     std::string prefixName = name.substr(0, name.find('_'));
-            //     if (prefixName == "ubuntu") {
-            //         ++ubuntuCount;
-            //     } else if (prefixName == "fedora") {
-            //         ++fedoraCount;
-            //     } else if (prefixName == "centos") {
-            //         ++centosCount;
-            //     } else if (prefixName == "opensuse") {
-            //         ++opensuseCount;
-            //     }
-            // }
+            parser.parseKey();
 
         } else if (parser.isValue()) {
 
             // parse value
-            std::string value;
-            parser.parseValue(value);
-
-            // // save the version value
-            // if (inversion) {
-            //     version = value;
-            //     inversion = false;
-            // }
+            parser.parseValue();
         }
     }
 
