@@ -11,16 +11,6 @@ YAMLParser::YAMLParser(const std::string& buffer)
     : buffer(buffer), pc(buffer.cbegin()), end(buffer.cend())
 {}
 
-// register handler for a key
-void YAMLParser::registerKeyHandler(std::function<void(std::string_view)> handler) {
-    handleKey = handler;
-}
-
-// register handler for a value
-void YAMLParser::registerValueHandler(std::function<void(std::string_view)> handler) {
-    handleValue = handler;
-}
-
 // parse the YAML using the registered handlers
 void YAMLParser::parse() {
 
@@ -66,8 +56,7 @@ void YAMLParser::parseKey() {
     pc = std::find_if_not(pc, end, [] (char c) { return isspace(c); });
     inValue = true;
 
-    if (handleKey)
-        handleKey(name);
+    handleKey(name);
 }
 
 // YAML parsing is at a value
@@ -90,6 +79,5 @@ void YAMLParser::parseValue() {
     pc = std::find_if_not(pc, end, [] (char c) { return isspace(c); });
     inValue = false;
 
-    if (handleValue)
-        handleValue(value);
+    handleValue(value);
 }
