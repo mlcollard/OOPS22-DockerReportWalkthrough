@@ -26,6 +26,9 @@ public:
     // parse the YAML using the registered handlers
     void parse();
 
+    // destructor
+    virtual ~YAMLParser() = default;
+
 private:
 
     // Done with parsing
