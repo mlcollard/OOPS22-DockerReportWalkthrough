@@ -15,7 +15,7 @@
 #include <string_view>
 #include <sstream>
 
-#include "YAMLParser.hpp"
+#include "DockerReportParser.hpp"
 
 int main() {
 
@@ -33,7 +33,7 @@ int main() {
     std::string buffer = sstream.str();
 
     // parse YAML and update counts
-    YAMLParser parser(buffer);
+    DockerReportParser parser(buffer);
     parser.registerKeyHandler([&](std::string_view name) {
 
         // update docker counters and version
