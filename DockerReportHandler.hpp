@@ -1,18 +1,18 @@
 /*
-    DockerReportParser.hpp
+    DockerReportHandler.hpp
 
-    Declaration file for DockerReportParser
+    Declaration file for DockerReportHandler
 */
 
-#ifndef INCLUDED_DOCKERREPORTPARSER_HPP
-#define INCLUDED_DOCKERREPORTPARSER_HPP
+#ifndef INCLUDED_DOCKERREPORTHANDLER_HPP
+#define INCLUDED_DOCKERREPORTHANDLER_HPP
 
-#include "YAMLParser.hpp"
+#include "YAMLParserHandler.hpp"
 #include <string_view>
+#include <string>
 
-class DockerReportParser : public YAMLParser {
+class DockerReportHandler : public YAMLParserHandler {
 public:
-    DockerReportParser(const std::string& buffer);
 
     // key count
     int getKeyCount() const;

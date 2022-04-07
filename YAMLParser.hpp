@@ -7,7 +7,7 @@
 #ifndef INCLUDED_YAMLPARSER_HPP
 #define INCLUDED_YAMLPARSER_HPP
 
-#include <functional>
+#include "YAMLParserHandler.hpp"
 #include <string>
 #include <string_view>
 
@@ -15,20 +15,13 @@ class YAMLParser {
 public:
 
     // constructor
-    YAMLParser(const std::string& buffer);
+    YAMLParser(YAMLParserHandler& handler, const std::string& buffer);
 
     // parse the YAML using the registered handlers
     void parse();
 
     // destructor
     virtual ~YAMLParser() = default;
-
-protected:
-    // key handler
-    virtual void handleKey(std::string_view key) = 0;
-
-    // value handler
-    virtual void handleValue(std::string_view key) = 0;
 
 private:
 
@@ -47,6 +40,7 @@ private:
     // Parse a YAML value
     void parseValue();
 
+    YAMLParserHandler& handler;
     bool inValue = false;
     std::string buffer;
     std::string::const_iterator pc;

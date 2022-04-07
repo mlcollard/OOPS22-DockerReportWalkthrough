@@ -1,47 +1,49 @@
 /*
-    DockerReportParser.cpp
+    DockerReportHandler.cpp
 
-    Implementation for DockerReportParser class
+    Implementation for DockerReportHandler class
 */
 
-#include "DockerReportParser.hpp"
-
-DockerReportParser::DockerReportParser(const std::string& buffer)
-    : YAMLParser(buffer)
-{}
+#include "DockerReportHandler.hpp"
 
 // key count
-int DockerReportParser::getKeyCount() const {
+int DockerReportHandler::getKeyCount() const {
+
     return keyCount;
 }
 
 // Ubuntu count
-int DockerReportParser::getUbuntuCount() const {
+int DockerReportHandler::getUbuntuCount() const {
+
     return ubuntuCount;
 }
 
 // Fedora count
-int DockerReportParser::getFedoraCount() const {
+int DockerReportHandler::getFedoraCount() const {
+
     return fedoraCount;
 }
 
 // CentOS count
-int DockerReportParser::getCentOSCount() const {
+int DockerReportHandler::getCentOSCount() const {
+
     return centosCount;
 }
 
 // OpenSUSE count
-int DockerReportParser::getOpenSUSECount() const {
+int DockerReportHandler::getOpenSUSECount() const {
+
     return opensuseCount;
 }
 
 // version
-std::string_view DockerReportParser::getVersion() const {
+std::string_view DockerReportHandler::getVersion() const {
+
     return version;
 }
 
 // key handler
-void DockerReportParser::handleKey(std::string_view name) {
+void DockerReportHandler::handleKey(std::string_view name) {
 
     // update docker counters and version
     if (name == "version") {
@@ -62,7 +64,7 @@ void DockerReportParser::handleKey(std::string_view name) {
 }
 
 // value handler
-void DockerReportParser::handleValue(std::string_view value) {
+void DockerReportHandler::handleValue(std::string_view value) {
 
     // save the version value
     if (inversion) {

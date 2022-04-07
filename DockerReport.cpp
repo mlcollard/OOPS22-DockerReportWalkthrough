@@ -15,7 +15,8 @@
 #include <string_view>
 #include <sstream>
 
-#include "DockerReportParser.hpp"
+#include "YAMLParser.hpp"
+#include "DockerReportHandler.hpp"
 
 int main() {
 
@@ -25,18 +26,19 @@ int main() {
     std::string buffer = sstream.str();
 
     // parse the YAML and collect docker compose data
-    DockerReportParser parser(buffer);
+    DockerReportHandler handler;
+    YAMLParser parser(handler, buffer);
     parser.parse();
 
     // Output docker compose report
-    std::cout << "# Docker Report: version " << parser.getVersion() << '\n';
+    std::cout << "# Docker Report: version " << handler.getVersion() << '\n';
     std::cout << "| Platform | Count |\n";
     std::cout << "|:-----|-----:|\n";
-    std::cout << "| all | " << parser.getKeyCount() << " |\n";
-    std::cout << "| ubuntu | " << parser.getUbuntuCount() << " |\n";
-    std::cout << "| fedora | " << parser.getFedoraCount() << " |\n";
-    std::cout << "| centos | " << parser.getCentOSCount() << " |\n";
-    std::cout << "| opensuse | " << parser.getOpenSUSECount() << " |\n";
+    std::cout << "| all | " << handler.getKeyCount() << " |\n";
+    std::cout << "| ubuntu | " << handler.getUbuntuCount() << " |\n";
+    std::cout << "| fedora | " << handler.getFedoraCount() << " |\n";
+    std::cout << "| centos | " << handler.getCentOSCount() << " |\n";
+    std::cout << "| opensuse | " << handler.getOpenSUSECount() << " |\n";
 
     return 0;
 }
